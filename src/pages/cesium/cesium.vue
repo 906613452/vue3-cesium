@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup >
 import { onMounted,watch,ref } from "vue";
 import store from "@/store/store";
 import * as Cesium from "cesium";

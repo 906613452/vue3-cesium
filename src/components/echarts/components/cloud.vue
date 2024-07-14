@@ -34,7 +34,7 @@ nameList.forEach((item, index) => {
 	});
 });
 
-const option = reactive({
+const option:any = reactive({
 	color: colorList,
 	graphic: [
 		{

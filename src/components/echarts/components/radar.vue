@@ -41,7 +41,7 @@ let list = [
 ];
 let data1 = [60, 60, 65, 60, 70, 40];
 
-const option = reactive({
+const option:any = reactive({
 	// backgroundColor: '#FFFFFF',
 	tooltip: {
 		show: true,
@@ -78,7 +78,7 @@ const option = reactive({
 				}
 			},
 			formatter: (a: any) => {
-				let i = contains(list, a); // 处理对应要显示的样式
+				let i:any = contains(list, a); // 处理对应要显示的样式
 				return `{a| ${a}}{b|(${data1[i]})}`;
 			}
 		},
