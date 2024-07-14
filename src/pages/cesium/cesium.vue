@@ -6,7 +6,7 @@ import ThroughRoad from './components/throughRoad.vue' ;
 import Points from './components/points.vue' ;
 import Wall from './components/wall.vue' ;
 
-const isView = ref<boolean>(false)
+const isView = ref(false)
 
 Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkN2ZmZGY2NS1mOWRiLTRlZTgtODdkOC1lOWMzOGRmNWQ3MTQiLCJpZCI6MjI1MjQ1LCJpYXQiOjE3MTk1OTI4MTB9.elj99yg8hAHGa9vuhiXlVCeVukUF1_z4XXKol11hQrk'
 
