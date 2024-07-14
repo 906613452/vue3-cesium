@@ -6,6 +6,7 @@
     }
   },
   "compilerOptions": {
+    "skipLibCheck": true,
     "outDir": "build",
     "allowJs": true,  //添加 编译时允许有js
     "allowSyntheticDefaultImports": true,
