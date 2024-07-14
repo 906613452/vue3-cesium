@@ -1,0 +1,26 @@
+{
+  "ts-node": {
+    "files": true,
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  },
+  "compilerOptions": {
+    "outDir": "build",
+    "allowJs": true,  //添加 编译时允许有js
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "types": ["node"],
+    "module": "ES2020",
+    "moduleResolution": "Node",
+
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*",// 添加配置
+    "src/**/*.d.ts"
+  ],
+  "exclude": ["node_modules", "build/**/*"]
+}
