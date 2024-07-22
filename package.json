@@ -13,6 +13,7 @@
     "axios": "^1.7.2",
     "cesium": "^1.119.0",
     "echarts": "^5.5.1",
+    "leaflet": "^1.9.4",
     "ts-node": "^10.9.2",
     "vite-plugin-cesium": "^1.2.22",
     "vue": "^3.4.29",
