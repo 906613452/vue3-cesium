@@ -29,7 +29,7 @@ export function useAxios() {
     }
     console.log(import.meta.env)
     const axios = Axios.create({
-        baseURL: import.meta.env.VITE_BASE_URL,
+        baseURL: 'https://open.ys7.com',
         timeout: 30000 // 30 seconds
     })
 
@@ -38,9 +38,9 @@ export function useAxios() {
 
         // const accessToken = user?.accessToken
         if (config.headers) {
-            config.headers['Accept-Language'] = 'zh'
-            config.headers['ngrok-skip-browser-warning'] = '123'
-            accessToken && (config.headers.Authorization = `Bearer ${accessToken}`)
+            // config.headers['Accept-Language'] = 'zh'
+            // config.headers['ngrok-skip-browser-warning'] = '123'
+            // accessToken && (config.headers.Authorization = `Bearer ${accessToken}`)
         }
         return config
     })

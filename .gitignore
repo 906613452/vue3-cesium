@@ -9,8 +9,11 @@ lerna-debug.log*
 
 node_modules
 dist
+build
+app_map
 dist-ssr
 *.local
+*.zip
 
 # Editor directories and files
 .vscode/*
