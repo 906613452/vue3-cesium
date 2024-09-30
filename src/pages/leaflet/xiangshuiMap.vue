@@ -22,9 +22,36 @@ const orgInfo = ref()
 const loading = ref(false)
 const allOrgsData = ref()
 const markers = ref({})
+const location = ref({lat:'',lng:''})
 onMounted(() => {
+  // getLocation()
   init();
+  // const route = useRoute();
+  // const currentUrl = route.fullPath;
+  // console.log(currentUrl)
+  let p = parseUrlParams(window.location.href)?parseUrlParams(window.location.href):{lat:'',lng:''}
+  location.value = {
+    lat:p.lat,
+    lng:p.lng
+  }
+  console.log(location.value)
 });
+
+
+
+function parseUrlParams(url) {
+  let queryString = url.split('?')[1];
+  let params = {};
+  
+  if (queryString) {
+    queryString.split('&').forEach(function(param) {
+      let keyValue = param.split('=');
+      params[keyValue[0]] = decodeURIComponent(keyValue[1]);
+    });
+  }
+  
+  return params;
+}
 const normalIcon = L.icon({
   iconUrl: org,
   iconSize: [38, 38], // 大小
@@ -102,11 +129,16 @@ const init = () => {
   });
 
 
-
-  api.login.getOrgsList('320921').then(res => {
-    // console.log(res)
-    allOrgsData.value = res
-    res.map(item => {
+  let pararms = {
+    name: '',
+    regionCode: '320921',
+    townCode: '',
+    typeId: ''
+  }
+  api.login.getOrgsList(pararms).then(res => {
+    console.log(res)
+    allOrgsData.value = res.data
+    res.data.map(item => {
 
       let marker = L.marker([item.lat, item.lng], { icon: normalIcon }).addTo(markerLayer.value)
       markers.value[item.enterpriseName] = marker;
@@ -127,14 +159,14 @@ const init = () => {
         const offset = [0, 150]; // 偏移量，Y轴向上偏移100像素
 
         // 获取当前标记的像素坐标
-        const point = map.value.latLngToLayerPoint([item.lat, item.lng]);
-        // 计算偏移后的像素坐标
-        const newPoint = L.point(point.x + offset[0], point.y + offset[1]);
-        // 将偏移后的像素坐标转换回经纬度
-        const newLatLng = map.value.layerPointToLatLng(newPoint);
+        // const point = map.value.latLngToLayerPoint([item.lat, item.lng]);
+        // // 计算偏移后的像素坐标
+        // const newPoint = L.point(point.x + offset[0], point.y + offset[1]);
+        // // 将偏移后的像素坐标转换回经纬度
+        // const newLatLng = map.value.layerPointToLatLng(newPoint);
 
         // 设置地图视角到偏移后的坐标
-        map.value.setView(newLatLng, zoomLevel, { animate: true });
+        map.value.setView([item.lat, item.lng], zoomLevel, { animate: true });
 
 
       });
@@ -172,17 +204,17 @@ const changeSearch = () => {
       highlightedMarker.value = marker; // 记录当前高亮的 marker
 
       const zoomLevel = 13;
-      const offset = [0, 150]; // 偏移量，Y轴向上偏移100像素
+      // const offset = [0, 150]; // 偏移量，Y轴向上偏移100像素
 
       // 获取当前标记的像素坐标
-      const point = map.value.latLngToLayerPoint([item.lat, item.lng]);
-      // 计算偏移后的像素坐标
-      const newPoint = L.point(point.x + offset[0], point.y + offset[1]);
-      // 将偏移后的像素坐标转换回经纬度
-      const newLatLng = map.value.layerPointToLatLng(newPoint);
+      // const point = map.value.latLngToLayerPoint([item.lat, item.lng]);
+      // // 计算偏移后的像素坐标
+      // const newPoint = L.point(point.x + offset[0], point.y + offset[1]);
+      // // 将偏移后的像素坐标转换回经纬度
+      // const newLatLng = map.value.layerPointToLatLng(newPoint);
 
       // 设置地图视角到偏移后的坐标
-      map.value.setView(newLatLng, zoomLevel, { animate: true });
+      map.value.setView([item.lat, item.lng], zoomLevel, { animate: true });
     })
 
 
@@ -311,7 +343,7 @@ watch(() => highlightedMarker.value, (newValue, oldValue) => {
   bottom: 0;
   background-color: white;
   width: 100%;
-  height: 50%;
+  height: 30%;
   z-index: 100;
   overflow: auto;
   padding: 20px 0;
